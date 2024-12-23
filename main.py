@@ -55,4 +55,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # 设置随机数种子
+    np.random.seed(1)
     main()
