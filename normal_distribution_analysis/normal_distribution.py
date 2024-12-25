@@ -10,6 +10,8 @@ column_names = df.columns.values
 # 方法2：指定具体列
 data = df.iloc[:, 0]
 
+print(list(data))
+
 
 def plot_normal_distribution(data):
     # 计算均值和标准差
@@ -23,14 +25,17 @@ def plot_normal_distribution(data):
     plt.figure(figsize=(10,6))
 
     # 直方图
-    plt.hist(data, bins=30, density=True, alpha=0.7, color='skyblue')
+    # plt.hist(data, bins=30, density=True, alpha=0.7, color='skyblue')
 
     # 正态分布曲线
     xmin, xmax = plt.xlim()
     # print(xmin, xmax)
-    x = np.linspace(xmin, xmax, 100)
-    p = stats.norm.pdf(x, mu, sigma)
-    plt.plot(x, p, 'k', linewidth=2)
+    # x = np.linspace(xmin, xmax, 1000)
+    # p = stats.norm.pdf(data, mu, sigma)
+    p = stats.norm.pdf(data)
+    print("x:" + str(data))
+    print("p:" + str(p))
+    plt.plot(data, p, 'k', linewidth=2)
 
     # 设置标题和标签
     plt.title('正态分布图')
@@ -43,6 +48,6 @@ def plot_normal_distribution(data):
 
 if __name__ == '__main__':
     # 调用函数
-    plot_normal_distribution(data)
+    plot_normal_distribution(list(data))
 
 
