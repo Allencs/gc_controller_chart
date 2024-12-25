@@ -30,12 +30,11 @@ def plot_normal_distribution(data):
     # 正态分布曲线
     xmin, xmax = plt.xlim()
     # print(xmin, xmax)
-    # x = np.linspace(xmin, xmax, 1000)
-    # p = stats.norm.pdf(data, mu, sigma)
-    p = stats.norm.pdf(data)
+    x = np.linspace(xmin, xmax, 100)
+    p = stats.norm.pdf(x, mu, sigma)
     print("x:" + str(data))
     print("p:" + str(p))
-    plt.plot(data, p, 'k', linewidth=2)
+    plt.plot(x, p, 'k', linewidth=2)
 
     # 设置标题和标签
     plt.title('正态分布图')
@@ -46,8 +45,37 @@ def plot_normal_distribution(data):
     plt.show()
 
 
+# 3. 正态性检验
+def normality_test(data):
+    """
+    进行正态性检验
+
+    参数:
+    原始数据集
+
+    返回:
+    检验结果
+    """
+    # Shapiro-Wilk检验
+    statistic, p_value = stats.shapiro(data)
+
+    print("Shapiro-Wilk检验结果:")
+    print(f"统计量: {statistic}")
+    print(f"p值: {p_value}")
+
+    # 判断是否服从正态分布
+    alpha = 0.05
+    if p_value > alpha:
+        print("数据可能服从正态分布")
+    else:
+        print("数据不服从正态分布")
+
+    return statistic, p_value
+
+
 if __name__ == '__main__':
     # 调用函数
     plot_normal_distribution(list(data))
+    # print(normality_test(list(data)))
 
 
