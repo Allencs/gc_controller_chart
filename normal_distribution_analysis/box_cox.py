@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 from scipy import stats
 
-
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文标签
 plt.rcParams['axes.unicode_minus'] = False  # 这两行需要手动设置
+
 
 # 1. 数据预处理
 def data_preprocessing(data):
@@ -140,7 +140,7 @@ def main(data):
     print("原始数据正态性检验:")
     normality_test(data, "原始数据")
 
-    # Box-Cox变换
+    # Box-Cox变换（transformed_data：变换后的数据集；lambda_param：最佳的Box-Cox变换参数）
     transformed_data, lambda_param = box_cox_transform(data)
 
     # 变换后数据正态性检验
